@@ -10,6 +10,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -78,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // 使用しない場合は空のままでOK
     }
 
     // --- 位置情報の処理 ---
@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void onLocationChanged(@NonNull Location location) {
         double lat = location.getLatitude();
         double lng = location.getLongitude();
+        Log.d("LocationDebug", "onLocationChanged: " + lat + ", " + lng);
 
         TextView locationView = findViewById(R.id.location_text);
         locationView.setText(String.format("現在地: %.5f, %.5f", lat, lng));
